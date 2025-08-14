@@ -11,7 +11,7 @@ if (!jwtToken) {
 
 async function getAdmins(jwt) {
 
-    const response = await fetch("http://localhost:8080/admins", {
+    const response = await fetch("https://loyalty-card-backend.onrender.com/admins", {
         method: "GET",
         headers: {
             "Content-Type": "application/json",

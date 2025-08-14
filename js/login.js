@@ -26,7 +26,7 @@ async function login(email, password) {
         password: password,
     };
 
-    const response = await fetch("http://localhost:8080/admins/login", {
+    const response = await fetch("https://loyalty-card-backend.onrender.com/admins/login", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(body)
