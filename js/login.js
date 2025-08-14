@@ -1,11 +1,18 @@
 // Login Form logic
 
-const loginButton = document.getElementById('loginButton');
+const jwtToken = localStorage.getItem("JWT");
 
-const inputEmail = document.getElementById('inputEmail');
-const inputPassword = document.getElementById('inputPassword');
+if (jwtToken) {
+    // When JWT token is set - redirect to /dashboard.html
+    location.href = "/dashboard.html";
+}
 
-loginButton.addEventListener('click', async function() {
+const loginButton = document.getElementById("loginButton");
+
+const inputEmail = document.getElementById("inputEmail");
+const inputPassword = document.getElementById("inputPassword");
+
+loginButton.addEventListener("click", async function() {
 
     const email = inputEmail.value;
     const password = inputPassword.value;
@@ -19,9 +26,9 @@ async function login(email, password) {
         password: password,
     };
 
-    const response = await fetch('http://localhost:8080/admins/login', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
+    const response = await fetch("http://localhost:8080/admins/login", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
         body: JSON.stringify(body)
     });
 
@@ -30,6 +37,8 @@ async function login(email, password) {
         const data = await response.json();
 
         localStorage.setItem("JWT", data.token);
+
+        location.href = "/dashboard.html";
     } else {
         alert("Login failed");
     }
